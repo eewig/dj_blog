@@ -1,1 +1,1 @@
-# dj_blog
+# Just blog
