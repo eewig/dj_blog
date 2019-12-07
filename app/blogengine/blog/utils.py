@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 
 from .models import *
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class ObjectDetailMixin:
 	model = None
@@ -16,7 +18,9 @@ class ObjectDetailMixin:
 		})
 
 
-class ObjectCreateMixin:
+class ObjectCreateMixin(LoginRequiredMixin):
+	raise_exception = True
+
 	model_form = None
 	template = None
 
@@ -33,7 +37,9 @@ class ObjectCreateMixin:
 		return render(request, self.template, context={'form': bound_form})
 
 
-class ObjectUpdateMixin:
+class ObjectUpdateMixin(LoginRequiredMixin):
+	raise_exception = True
+
 	model = None
 	model_form = None
 	template = None
@@ -53,7 +59,9 @@ class ObjectUpdateMixin:
 		return render(request, self.template, context={'form': bound_form, self.model.__name__.lower(): obj})
 
 
-class ObjectDeleteMixin:
+class ObjectDeleteMixin(LoginRequiredMixin):
+	raise_exception = True
+
 	model = None
 	template = None
 	redirect_url = None

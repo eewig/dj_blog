@@ -5,8 +5,8 @@ from .utils import *
 from .forms import TagForm, PostForm
 
 
+
 def posts_list(request):
-	# Create your views here.
 	posts = Post.objects.all()
 	return render(request, 'blog/index.html', context={'posts': posts})
 
